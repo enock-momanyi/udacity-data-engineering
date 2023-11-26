@@ -1,0 +1,11 @@
+CREATE EXTERNAL TABLE IF NOT EXISTS `stedi_db`.`accelerometer_landing` (
+  `user` string,
+  `timeStamp` bigint,
+  `x` float,
+  `y` float,
+  `z` float
+)
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
+STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat' OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION 's3://glue-s3-enock/accelerometer/landing/'
+TBLPROPERTIES ('classification' = 'json');
